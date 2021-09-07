@@ -1,16 +1,21 @@
 <?php
 
-require 'Classes/Pokemon.php';
-require 'Classes/Pikachu.php';
-require 'Classes/Charmeleon.php';
+require 'init.php';
 
-//$pokemon = new Pokemon();
-
-$pikachu = new Pikachu('Pikachu');
-$charmeleon = new Charmeleon('Charmeleon');
+$pikachu = new Pikachu('Gert');
+$charmeleon = new Charmeleon('Charmelameleon');
 
 echo $pikachu->name;
 echo '<br>' . $pikachu->health . ' hp';
 
 echo '<br><br>' . $charmeleon->name;
-echo '<br>' . $charmeleon->health . ' hp';
+echo '<br>' . $charmeleon->health . ' hp<br><br>';
+
+
+$pikachu->attacks($charmeleon, 0);
+$charmeleon->attacks($pikachu, 1);
+
+
+//Pikachu valt Charmeleon aan met een Electric Ring attack
+//Charmeleon valt Pikachu aan met een Flare attack
+//Print voor en na de aanval de health uit van de pokemon die wordt aangevallen.

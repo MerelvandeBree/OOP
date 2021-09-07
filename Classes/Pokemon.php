@@ -22,4 +22,26 @@ class Pokemon {
 
     }
 
+    public function getName(){
+
+        return $this->name;
+        
+    }
+
+    public function attacks($target, $attackNumber) {
+
+        $attack = $this->attacks[$attackNumber];
+
+        echo $this->name . ' attacks ' . $target->getName() . ' with ' . $attack['Name'] . '.<br>';
+
+        $target->damage($attack['Damage']);
+
+    }
+
+    public function damage() {
+
+    }
+
 }
+
+//getPopulation()

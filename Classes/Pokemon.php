@@ -8,8 +8,8 @@ class Pokemon {
     public $attacks;
     public $weakness;
     public $resistance;
-    public $target;
 
+    private static $count;
 
     public function __construct($name, $energyType, $health, $attacks, $weakness, $resistance) {
 
@@ -20,6 +20,7 @@ class Pokemon {
         $this->weakness = $weakness;
         $this->resistance = $resistance;
 
+        self::$count++;
     }
 
     public function getName(){
@@ -41,28 +42,39 @@ class Pokemon {
 
     public function damage($damage) {
 
-        $newHealth = $this->health - $damage;
+
         $resistance = $this->resistance['Value'];
         $weakness = $this->weakness['Multiplier'];
 
         if ($this->weakness['Name'] == 'fire') {
 
-            $damageTotal = $attack * $weakness;
+            $damageTotal = $damage * $weakness;
 
         }
 
         if ($this->resistance['Name'] == 'lightning') {
 
-            $damageTotal = $attack - $resistance;
+            $damageTotal = $damage - $resistance;
 
         }
 
-        echo $this->getName() . ' receives ' . -$damageTotal . ' damage.<br>';
-        echo $this->getName() . ' now has ' . $newHealth . ' hp.<br><br>';
+        $newHealth = $this->health - $damageTotal;
 
+        if ($newHealth < 1) {
+
+            self::$count--;
+
+        }
+
+        $this->health = $newHealth;
+
+        echo $this->getName() . ' receives ' . $damageTotal . ' damage.<br>';
+        echo $this->getName() . ' now has ' . $newHealth . ' hp.<br><br>';
     }
 
     public function getPopulation() {
+
+        return Pokemon::$count;
 
     }
 

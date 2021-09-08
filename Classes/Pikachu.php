@@ -11,6 +11,8 @@ class Pikachu extends Pokemon {
         $this->weakness = ['Name' => 'fire', 'Multiplier' => 1.5];
         $this->resistance = ['Name' => 'lightning', 'Value' => 10];
 
+        parent::__construct($this->name, $this->energyType, $this->health, $this->attacks, $this->weakness, $this->resistance);
+
     }
 
 }

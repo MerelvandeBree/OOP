@@ -5,14 +5,13 @@ require 'init.php';
 $pikachu = new Pikachu('Gert');
 $charmeleon = new Charmeleon('Charmelameleon');
 
-echo $pikachu->name;
-echo '<br>' . $pikachu->health . ' hp';
-
-echo '<br><br>' . $charmeleon->name;
-echo '<br>' . $charmeleon->health . ' hp<br><br>';
+echo $pikachu->name . ' has ' . $pikachu->health . ' hp<br>';
+echo $charmeleon->name . ' has ' . $charmeleon->health . ' hp<br><br>';
 
 
 $pikachu->attacks($charmeleon, 0);
+//$charmeleon->damage($charmeleon, 0);
+
 $charmeleon->attacks($pikachu, 1);
 
 

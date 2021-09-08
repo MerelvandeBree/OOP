@@ -25,23 +25,45 @@ class Pokemon {
     public function getName(){
 
         return $this->name;
-        
+
     }
 
     public function attacks($target, $attackNumber) {
 
         $attack = $this->attacks[$attackNumber];
+        $damage = $attack['Damage'];
 
         echo $this->name . ' attacks ' . $target->getName() . ' with ' . $attack['Name'] . '.<br>';
 
-        $target->damage($attack['Damage']);
+        $target->damage($damage);
 
     }
 
-    public function damage() {
+    public function damage($damage) {
+
+        $newHealth = $this->health - $damage;
+        $resistance = $this->resistance['Value'];
+        $weakness = $this->weakness['Multiplier'];
+
+        if ($this->weakness['Name'] == 'fire') {
+
+            $damageTotal = $attack * $weakness;
+
+        }
+
+        if ($this->resistance['Name'] == 'lightning') {
+
+            $damageTotal = $attack - $resistance;
+
+        }
+
+        echo $this->getName() . ' receives ' . -$damageTotal . ' damage.<br>';
+        echo $this->getName() . ' now has ' . $newHealth . ' hp.<br><br>';
+
+    }
+
+    public function getPopulation() {
 
     }
 
 }
-
-//getPopulation()

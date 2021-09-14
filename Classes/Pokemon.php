@@ -2,7 +2,7 @@
 
 class Pokemon {
 
-    public $name;
+    private $name;
     public $energyType;
     public $health;
     public $attacks;
@@ -36,25 +36,27 @@ class Pokemon {
 
         echo $this->name . ' attacks ' . $target->getName() . ' with ' . $attack['Name'] . '.<br>';
 
-        $target->damage($damage);
+        $target->damage($target, $damage);
 
     }
 
-    public function damage($damage) {
+    public function damage($target, $damage) {
 
+        $resistanceValue = $this->resistance['Value'];
+        $weaknessMultiplier = $this->weakness['Multiplier'];
 
-        $resistance = $this->resistance['Value'];
-        $weakness = $this->weakness['Multiplier'];
+        $resistanceType = $target->resistance['Name'];
+        $weaknessType = $target->weakness['Name'];
 
-        if ($this->weakness['Name'] == 'fire') {
+        if ($this->weakness['Name'] == $weaknessType) {
 
-            $damageTotal = $damage * $weakness;
+            $damageTotal = $damage * $weaknessMultiplier;
 
         }
 
-        if ($this->resistance['Name'] == 'lightning') {
+        if ($this->resistance['Name'] == $resistanceType) {
 
-            $damageTotal = $damage - $resistance;
+            $damageTotal = $damage - $resistanceValue;
 
         }
 

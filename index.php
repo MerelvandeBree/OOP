@@ -1,6 +1,8 @@
 <?php
 
-require 'init.php';
+spl_autoload_register(function ($class_name) {
+    include 'Classes/' . $class_name . '.php';
+});
 
 $pikachu = new Pikachu('Gert');
 $charmeleon = new Charmeleon('Charmelameleon');
